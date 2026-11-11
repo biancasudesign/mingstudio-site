@@ -42,18 +42,56 @@ nav a{margin-left:22px;text-decoration:none;font-weight:600;padding:6px 0;border
 nav a:hover{border-bottom-color:var(--accent)}
 
 /* hero */
-.hero{padding:64px 0 40px}
-.hero .wrap{display:grid;grid-template-columns:1.3fr .9fr;gap:40px;align-items:center}
-h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.02;margin:0 0 18px;font-weight:600;letter-spacing:0}
+.hero{position:relative;overflow:hidden}
+.hero .wrap{position:relative;z-index:2;min-height:clamp(520px,76vh,700px);display:flex;align-items:center;padding-top:56px;padding-bottom:56px}
+.hero .wrap{pointer-events:none} /* lets clicks reach the photo dots underneath */
+.hero-text{width:50%;pointer-events:auto}
+h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;margin:0 0 18px;font-weight:600;letter-spacing:0}
 .squiggle{display:block;width:150px;height:14px;margin:0 0 22px;color:var(--accent)}
-.hero p{max-width:34ch;font-size:1.2rem;margin:0 0 26px}
+.hero p{max-width:32ch;font-size:1.2rem;margin:0 0 26px}
 .btn{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:600;letter-spacing:.01em;font-family:inherit;font-size:1rem;text-decoration:none;border:0;border-radius:999px;padding:13px 28px;cursor:pointer}
 .btn:hover{filter:brightness(.93)}
-.sticker{justify-self:center;width:min(300px,100%);background:var(--accent);color:var(--on-accent);border-radius:46% 54% 52% 48% / 55% 45% 55% 45%;padding:38px 30px;text-align:center;transform:rotate(-4deg);line-height:1.3}
+
+/* hero photos: the right half of the hero, with a soft wavy edge */
+.hero-media{position:absolute;z-index:1;top:0;right:0;bottom:0;width:54%;background:var(--accent-soft);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-opacity='0'/%3E%3Cstop offset='.13' stop-opacity='1'/%3E%3C/linearGradient%3E%3Cpath fill='url(%23g)' d='M9 0C3 12 12 22 6 35S11 58 5 70 10 90 7 100H100V0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
+          mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-opacity='0'/%3E%3Cstop offset='.13' stop-opacity='1'/%3E%3C/linearGradient%3E%3Cpath fill='url(%23g)' d='M9 0C3 12 12 22 6 35S11 58 5 70 10 90 7 100H100V0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+.hero-hint{position:absolute;inset:0;margin:0;display:grid;place-items:center;padding:24px 24px 24px 18%;text-align:center;font-weight:600;font-size:.95rem;color:var(--muted)}
+.slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
+.slide.is-on{opacity:1}
+.slide-controls{position:absolute;z-index:3;bottom:22px;right:calc(27% - 60px);display:flex;align-items:center;gap:2px;padding:4px 8px;border-radius:999px;background:rgba(42,36,32,.42);backdrop-filter:blur(6px)}
+.slide-controls button{width:26px;height:26px;padding:0;border:0;background:none;cursor:pointer;display:grid;place-items:center;color:#fff}
+.slide-controls .dot::before{content:"";width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,.6);transition:width .3s,background .3s}
+.slide-controls .dot[aria-current="true"]::before{width:20px;background:#fff}
+.slide-controls .dot[aria-current="true"]{width:36px}
+.slide-controls svg{width:12px;height:12px;fill:currentColor}
+.slide-controls :focus-visible{outline-color:#fff;outline-offset:0}
+
+/* next market sticker: sits on the photo edge */
+.sticker{position:absolute;z-index:3;left:calc(46% - 70px);bottom:12%;width:250px;background:var(--accent);color:var(--on-accent);border-radius:46% 54% 52% 48% / 55% 45% 55% 45%;padding:34px 26px;text-align:center;transform:rotate(-4deg);line-height:1.3;box-shadow:0 10px 30px rgba(42,36,32,.18)}
 .sticker small{display:block;font-weight:600;font-size:.95rem}
-.sticker strong{display:block;font-size:1.8rem;font-weight:600;margin:6px 0 4px;line-height:1.15}
-.sticker span{font-weight:600}
+.sticker strong{display:block;font-size:1.6rem;font-weight:600;margin:6px 0 4px;line-height:1.15}
+.sticker span{display:block;font-weight:600}
+.sticker .where{margin-top:8px;font-size:.95rem;line-height:1.3}
+.sticker .where b{font-weight:800}
 .sticker a{display:inline-block;margin-top:10px;font-weight:800}
+
+/* tablet and phone: photo on top, wavy bottom edge, sticker overlapping it */
+@media (max-width:900px){
+  .hero{display:flex;flex-direction:column}
+  .hero-media{position:relative;width:100%;height:auto;aspect-ratio:5/4;max-height:62vh;
+    -webkit-mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V93C86 100 70 89 52 95S18 89 0 96Z'/%3E%3C/svg%3E");
+            mask-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H100V93C86 100 70 89 52 95S18 89 0 96Z'/%3E%3C/svg%3E")}
+  .hero .wrap{width:100%;min-height:0;padding-top:28px;padding-bottom:48px;display:block}
+  .hero-text{width:auto}
+  .hero-media{order:1}.sticker{order:2}.hero .wrap{order:3}
+  .sticker{position:relative;left:auto;bottom:auto;width:200px;padding:22px 16px;margin:-104px 0 0 16px;align-self:flex-start}
+  .sticker .where{font-size:.88rem}
+  .sticker small{font-size:.85rem}
+  .sticker strong{font-size:1.2rem}
+  .slide-controls{right:12px;bottom:10%}
+}
+@media (min-width:600px) and (max-width:900px){.hero-media{aspect-ratio:16/9}}
 
 /* sections */
 section{padding:56px 0}
@@ -63,12 +101,33 @@ h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weigh
 .category:first-of-type{border-top:0}
 .category h3{font-size:1.6rem;margin:0 0 4px;font-weight:600}
 .category p{margin:0 0 18px;color:var(--muted);max-width:56ch}
-.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.ph{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;color:var(--muted);font-size:.9rem;padding:12px}
+/* photo galleries: a row you can swipe or move with the arrows */
+.carousel{position:relative}
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 32px) / 3);gap:16px;
+  overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:2px 0}
+.gallery::-webkit-scrollbar{display:none}
+.gallery:focus-visible{outline-offset:4px}
+.ph{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;color:var(--muted);font-size:.9rem;padding:12px;scroll-snap-align:start}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ph:nth-child(1){border-radius:26px 26px 90px 26px}
-.ph:nth-child(2){border-radius:90px 26px 26px 26px}
-.ph:nth-child(3){border-radius:26px 90px 26px 26px}
+.ph:nth-child(3n+1){border-radius:26px 26px 90px 26px}
+.ph:nth-child(3n+2){border-radius:90px 26px 26px 26px}
+.ph:nth-child(3n){border-radius:26px 90px 26px 26px}
+.g-arrow{position:absolute;z-index:2;top:50%;width:48px;height:48px;margin-top:-24px;border:0;border-radius:999px;background:var(--bg);color:var(--ink);
+  box-shadow:0 4px 16px rgba(42,36,32,.22);display:grid;place-items:center;cursor:pointer;transition:opacity .25s,transform .2s}
+.g-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.g-arrow:hover{transform:scale(1.07)}
+.g-arrow.prev{left:-18px}
+.g-arrow.next{right:-18px}
+.g-arrow[disabled]{opacity:0;pointer-events:none}
+.g-count{margin:12px 0 0;font-size:.9rem;font-weight:600;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){.gallery{scroll-behavior:auto}.g-arrow{transition:none}}
+@media (max-width:900px){.gallery{grid-auto-columns:calc((100% - 16px) / 2.3)}}
+@media (max-width:600px){
+  /* phone: photos run edge to edge with the next one peeking in */
+  .gallery{grid-auto-columns:76%;gap:12px;margin:0 -22px;padding:2px 22px;scroll-padding:0 22px}
+  .g-arrow{width:42px;height:42px;margin-top:-21px}
+  .g-arrow.prev{left:-6px}.g-arrow.next{right:-6px}
+}
 
 /* markets */
 #markets{background:var(--accent-soft)}
@@ -88,17 +147,11 @@ input,textarea{font:inherit;color:inherit;background:#fff;border:2px solid var(-
 input:focus,textarea:focus{border-color:var(--accent);outline:none}
 textarea{min-height:140px;resize:vertical}
 .trap{position:absolute;left:-9999px}
-.direct{margin-top:20px;color:var(--muted)}
 
 footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:.95rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
 
 @media (max-width:760px){
-  .hero .wrap{grid-template-columns:1fr}
-  .hero{padding-top:40px}
-  .sticker{order:-1;width:240px;padding:28px 22px;justify-self:start}
-  .gallery{grid-template-columns:repeat(2,1fr)}
-  .gallery .ph:nth-child(3){display:none}
   .market{grid-template-columns:1fr;gap:4px}
   nav a{margin-left:14px}
 }
@@ -121,18 +174,31 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 
 <!-- ============ HERO ============ -->
 <div class="hero">
+
+  <!-- HERO PHOTOS: 3 to 5 is best. To add one, copy an <img> line and change the file name and alt text.
+       Landscape photos about 1600 x 1200 px work best. They change by themselves every few seconds. -->
+  <div class="hero-media" id="hero-media" aria-roledescription="carousel" aria-label="Photos of our work">
+    <p class="hero-hint" aria-hidden="true">Photos here: hero-1.jpg to hero-4.jpg</p>
+    <img class="slide is-on" src="images/hero-1.jpg" alt="Describe hero photo 1" fetchpriority="high">
+    <img class="slide" src="images/hero-2.jpg" alt="Describe hero photo 2" loading="lazy">
+    <img class="slide" src="images/hero-3.jpg" alt="Describe hero photo 3" loading="lazy">
+    <img class="slide" src="images/hero-4.jpg" alt="Describe hero photo 4" loading="lazy">
+    <div class="slide-controls" id="slide-controls"></div>
+  </div>
+
   <div class="wrap">
-    <div>
+    <div class="hero-text">
       <h1>Clay, thread and a bit of play.</h1>
       <svg class="squiggle" viewBox="0 0 150 14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M3 8 C 15 0, 27 14, 39 7 S 63 0, 75 7 S 99 14, 111 7 S 135 0, 147 7"/></svg>
       <p>Handmade ceramics, sewn goods and other small crafts from our studio. Replace this with one or two friendly sentences about you.</p>
       <a class="btn" href="#work">See the work</a>
     </div>
-    <!-- Filled in automatically from the MARKETS list further down -->
-    <div class="sticker" id="sticker" aria-live="polite">
-      <small>Next market</small>
-      <strong>Dates coming soon</strong>
-    </div>
+  </div>
+
+  <!-- Filled in automatically from the MARKETS list further down -->
+  <div class="sticker" id="sticker" aria-live="polite">
+    <small>Next market</small>
+    <strong>Dates coming soon</strong>
   </div>
 </div>
 
@@ -145,30 +211,42 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
     <div class="category">
       <h3>Ceramics</h3>
       <p>Mugs, bowls and plates, thrown or hand built. Replace with a line about your glazes.</p>
+      <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
+           To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
         <figure class="ph"><img src="images/ceramics-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: ceramics-1.jpg</figure>
         <figure class="ph"><img src="images/ceramics-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: ceramics-2.jpg</figure>
         <figure class="ph"><img src="images/ceramics-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: ceramics-3.jpg</figure>
+        <figure class="ph"><img src="images/ceramics-4.jpg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: ceramics-4.jpg</figure>
+        <figure class="ph"><img src="images/ceramics-5.jpg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: ceramics-5.jpg</figure>
       </div>
     </div>
 
     <div class="category">
       <h3>Sewing</h3>
       <p>Bags, pouches and textile goods. Replace with a line about your fabrics.</p>
+      <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
+           To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
         <figure class="ph"><img src="images/sewing-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: sewing-1.jpg</figure>
         <figure class="ph"><img src="images/sewing-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: sewing-2.jpg</figure>
         <figure class="ph"><img src="images/sewing-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: sewing-3.jpg</figure>
+        <figure class="ph"><img src="images/sewing-4.jpg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: sewing-4.jpg</figure>
+        <figure class="ph"><img src="images/sewing-5.jpg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: sewing-5.jpg</figure>
       </div>
     </div>
 
     <div class="category">
       <h3>Other crafts</h3>
       <p>The rest of the workshop: small things that did not fit anywhere else.</p>
+      <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
+           To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
         <figure class="ph"><img src="images/crafts-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: crafts-1.jpg</figure>
         <figure class="ph"><img src="images/crafts-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: crafts-2.jpg</figure>
         <figure class="ph"><img src="images/crafts-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: crafts-3.jpg</figure>
+        <figure class="ph"><img src="images/crafts-4.jpg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: crafts-4.jpg</figure>
+        <figure class="ph"><img src="images/crafts-5.jpg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: crafts-5.jpg</figure>
       </div>
     </div>
 
@@ -207,7 +285,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
       <input class="trap" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div><button class="btn" type="submit">Send message</button></div>
     </form>
-    <p class="direct">Prefer email? <a href="mailto:hello@mingsstudio.ca">hello@mingsstudio.ca</a></p>
   </div>
 </section>
 
@@ -225,26 +302,43 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 /* ============================================================
    UPCOMING MARKETS: this is the only list you edit each time.
    Copy a line, change the details, save. Rules:
-   - date must be written YEAR-MONTH-DAY, like 2026-11-07
-   - leave link as "" if you have no link
-   - leave note as "" if you have nothing to add
-   - markets that have already happened hide themselves
+   - date: the first day, written YEAR-MONTH-DAY, like 2026-11-15
+   - end:  the last day if the market runs over several days,
+           or "" if it is a one-day market
+   - leave time, place, link or note as "" if you have nothing for them
+   - the top market also shows in the "Next market" bubble
+   - markets hide themselves once they are over
    ============================================================ */
 const MARKETS = [
-  { date: "2026-11-07", time: "10am to 4pm", name: "Market name", place: "Venue, Town", link: "https://example.com", note: "Both of us will be there." },
-  { date: "2026-11-21", time: "9am to 3pm",  name: "Another market name", place: "Venue, Town", link: "", note: "Bring cash or card, we take both." },
-  { date: "2026-12-05", time: "10am to 5pm", name: "Holiday market", place: "Venue, Town", link: "", note: "" }
+  { date: "2026-11-14", end: "2026-11-15", time: "10:30am to 5pm", name: "Artisans Westmount", place: "Victoria Hall", link: "", note: "$2 admission, or bring a non-perishable food item." },
+  { date: "2026-11-21", end: "2026-11-22", time: "", name: "Artisan market in Dorval", place: "", link: "", note: "Details to come." }
 ];
 
 /* ---- below here is the machinery; no need to touch ---- */
 (function () {
   var now = new Date();
-  var upcoming = MARKETS
-    .map(function (m) { m.when = new Date(m.date + "T23:59:59"); return m; })
-    .filter(function (m) { return m.when >= now; })
-    .sort(function (a, b) { return a.when - b.when; });
+  var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  function day(s) { return new Date(s + "T12:00:00"); }
 
-  function fmt(d, opts) { return d.toLocaleDateString("en-CA", opts); }
+  var upcoming = MARKETS
+    .map(function (m) { m.from = day(m.date); m.to = m.end ? day(m.end) : m.from; return m; })
+    .filter(function (m) { return new Date((m.end || m.date) + "T23:59:59") >= now; })
+    .sort(function (a, b) { return a.from - b.from; });
+
+  /* "Nov 15", "Nov 15–16" or "Nov 30 – Dec 1" */
+  function dates(m) {
+    var a = m.from, b = m.to;
+    var s = MONTHS[a.getMonth()] + " " + a.getDate();
+    if (+a === +b) return s;
+    return a.getMonth() === b.getMonth() ? s + "–" + b.getDate() : s + " – " + MONTHS[b.getMonth()] + " " + b.getDate();
+  }
+  /* "Sat", "Sat & Sun" or "Fri–Sun" */
+  function days(m) {
+    var n = Math.round((m.to - m.from) / 864e5) + 1;
+    var a = DAYS[m.from.getDay()], b = DAYS[m.to.getDay()];
+    return n === 1 ? a : n === 2 ? a + " & " + b : a + "–" + b;
+  }
   function esc(s) { var t = document.createElement("div"); t.textContent = s; return t.innerHTML; }
 
   var sticker = document.getElementById("sticker");
@@ -252,21 +346,106 @@ const MARKETS = [
 
   if (upcoming.length) {
     var n = upcoming[0];
-    sticker.innerHTML = "<small>Next market</small><strong>" +
-      fmt(n.when, { weekday: "long", month: "long", day: "numeric" }) +
-      "</strong><span>" + esc(n.place) + "</span><br><a href=\"#markets\">All dates</a>";
+    sticker.innerHTML = "<small>Next market</small><strong>" + dates(n) + "</strong><span>" + days(n) + "</span>" +
+      "<span class=\"where\"><b>" + esc(n.name) + "</b>" + (n.place ? "<br>at " + esc(n.place) : "") + "</span>" +
+      "<a href=\"#markets\">All dates</a>";
 
     list.innerHTML = upcoming.map(function (m) {
       var title = m.link
         ? "<a href=\"" + esc(m.link) + "\" target=\"_blank\" rel=\"noopener\">" + esc(m.name) + "</a>"
         : esc(m.name);
-      return "<div class=\"market\"><div class=\"date\">" +
-        fmt(m.when, { weekday: "short", month: "short", day: "numeric" }) +
-        "<small>" + esc(m.time) + "</small></div><div><h3>" + title + "</h3><p>" + esc(m.place) + "</p>" +
+      return "<div class=\"market\"><div class=\"date\">" + dates(m) + "<small>" + days(m) + "</small>" +
+        (m.time ? "<small>" + esc(m.time) + "</small>" : "") + "</div><div><h3>" + title + "</h3>" +
+        (m.place ? "<p>" + esc(m.place) + "</p>" : "") +
         (m.note ? "<p class=\"note\">" + esc(m.note) + "</p>" : "") + "</div></div>";
     }).join("");
   }
   document.getElementById("year").textContent = now.getFullYear();
+})();
+
+/* ---- hero photo slideshow (machinery; no need to touch) ---- */
+(function () {
+  var box = document.getElementById("hero-media");
+  var ctrl = document.getElementById("slide-controls");
+  var slides = [], i = 0, timer = null, paused = false;
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var DELAY = 6000; /* milliseconds each photo stays: 6000 = 6 seconds */
+
+  function show(n) {
+    slides[i].classList.remove("is-on");
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("is-on");
+    ctrl.querySelectorAll(".dot").forEach(function (d, k) { d.setAttribute("aria-current", k === i ? "true" : "false"); });
+  }
+  function start() { stop(); if (!paused && !still && slides.length > 1) timer = setInterval(function () { show(i + 1); }, DELAY); }
+  function stop() { clearInterval(timer); }
+
+  function build() {
+    slides = Array.prototype.slice.call(box.querySelectorAll(".slide"));
+    if (!slides.length) { ctrl.remove(); return; }
+    if (i >= slides.length) i = 0;
+    slides.forEach(function (s, k) { s.classList.toggle("is-on", k === i); });
+    if (slides.length < 2) { ctrl.hidden = true; return; }
+    ctrl.innerHTML = slides.map(function (s, k) {
+      return '<button class="dot" type="button" aria-label="Show photo ' + (k + 1) + ' of ' + slides.length + '"></button>';
+    }).join("") + (still ? "" : '<button class="pause" type="button" aria-label="Pause slideshow"><svg viewBox="0 0 12 12"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg></button>');
+    ctrl.querySelectorAll(".dot").forEach(function (d, k) { d.addEventListener("click", function () { show(k); start(); }); });
+    var p = ctrl.querySelector(".pause");
+    if (p) p.addEventListener("click", function () {
+      paused = !paused;
+      p.setAttribute("aria-label", paused ? "Play slideshow" : "Pause slideshow");
+      p.innerHTML = paused ? '<svg viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z"/></svg>' : '<svg viewBox="0 0 12 12"><rect x="2" y="1" width="3" height="10" rx="1"/><rect x="7" y="1" width="3" height="10" rx="1"/></svg>';
+      paused ? stop() : start();
+    });
+    show(i); start();
+  }
+  /* a photo that fails to load is dropped from the rotation */
+  box.querySelectorAll(".slide").forEach(function (s) { s.addEventListener("error", function () { s.remove(); build(); }); });
+  box.addEventListener("mouseenter", stop);
+  box.addEventListener("mouseleave", start);
+  box.addEventListener("focusin", stop);
+  box.addEventListener("focusout", start);
+  document.addEventListener("visibilitychange", function () { document.hidden ? stop() : start(); });
+  build();
+})();
+
+/* ---- photo gallery arrows (machinery; no need to touch) ---- */
+(function () {
+  var L = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var R = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  document.querySelectorAll(".gallery").forEach(function (g) {
+    var name = g.closest(".category").querySelector("h3").textContent;
+    var box = document.createElement("div"); box.className = "carousel";
+    g.parentNode.insertBefore(box, g); box.appendChild(g);
+    g.setAttribute("tabindex", "0"); g.setAttribute("role", "region"); g.setAttribute("aria-label", name + " photos");
+    var prev = document.createElement("button"), next = document.createElement("button");
+    prev.className = "g-arrow prev"; next.className = "g-arrow next";
+    prev.type = next.type = "button";
+    prev.setAttribute("aria-label", "Previous " + name + " photos"); prev.innerHTML = L;
+    next.setAttribute("aria-label", "More " + name + " photos"); next.innerHTML = R;
+    box.appendChild(prev); box.appendChild(next);
+    var count = document.createElement("p"); count.className = "g-count"; count.setAttribute("aria-live", "polite");
+    box.after(count);
+
+    function gap() { return parseFloat(getComputedStyle(g).columnGap) || 0; }
+    function step() { var f = g.querySelector(".ph"); return f ? f.getBoundingClientRect().width + parseFloat(getComputedStyle(g).columnGap) : g.clientWidth; }
+    function update() {
+      var items = g.querySelectorAll(".ph").length, s = step();
+      var first = Math.round(g.scrollLeft / s) + 1;
+      var shown = Math.max(1, Math.floor((g.clientWidth + gap() + 1) / s));
+      var last = Math.min(items, first + shown - 1);
+      prev.disabled = g.scrollLeft < 4;
+      next.disabled = g.scrollLeft + g.clientWidth >= g.scrollWidth - 4;
+      count.textContent = items > shown ? (first === last ? first : first + "–" + last) + " of " + items : "";
+    }
+    /* each click moves by one photo on phones, by a full row on bigger screens */
+    function move(dir) { var s = step(); var per = Math.max(1, Math.floor((g.clientWidth + gap() + 1) / s)); g.scrollBy({ left: dir * s * per, behavior: "smooth" }); }
+    prev.addEventListener("click", function () { move(-1); });
+    next.addEventListener("click", function () { move(1); });
+    g.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+  });
 })();
 </script>
 </body>
