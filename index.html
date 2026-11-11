@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ming’s Studio | Ceramics and sewing</title>
+<meta name="description" content="Handmade ceramics, sewn goods and crafts. Find us at markets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   STYLE SETTINGS: change these and the whole site follows.
+   ============================================================ */
+:root{
+  --accent: #E0A126;          /* your one accent color */
+  --accent-soft: #FBF0D3;/* a pale tint of the accent, used for photo placeholders */
+  --on-accent: #2A2420;    /* text color on top of the accent */
+  --bg: #FFFEFB;
+  --ink: #2A2420;
+  --muted: #6B6159;
+  --line: #EDE6DA;
+  --font: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;           /* body text */
+  --font-head: "Fredoka", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* headings, logo, buttons */
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:1.0625rem;line-height:1.65}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+
+h1,h2,h3,.logo,.btn,.sticker strong,.market .date{font-family:var(--font-head)}
+
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(255,254,251,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:600;font-size:1.2rem;text-decoration:none;letter-spacing:.01em}
+nav a{margin-left:22px;text-decoration:none;font-weight:600;padding:6px 0;border-bottom:3px solid transparent}
+nav a:hover{border-bottom-color:var(--accent)}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr .9fr;gap:40px;align-items:center}
+h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1.02;margin:0 0 18px;font-weight:600;letter-spacing:0}
+.squiggle{display:block;width:150px;height:14px;margin:0 0 22px;color:var(--accent)}
+.hero p{max-width:34ch;font-size:1.2rem;margin:0 0 26px}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:600;letter-spacing:.01em;font-family:inherit;font-size:1rem;text-decoration:none;border:0;border-radius:999px;padding:13px 28px;cursor:pointer}
+.btn:hover{filter:brightness(.93)}
+.sticker{justify-self:center;width:min(300px,100%);background:var(--accent);color:var(--on-accent);border-radius:46% 54% 52% 48% / 55% 45% 55% 45%;padding:38px 30px;text-align:center;transform:rotate(-4deg);line-height:1.3}
+.sticker small{display:block;font-weight:600;font-size:.95rem}
+.sticker strong{display:block;font-size:1.8rem;font-weight:600;margin:6px 0 4px;line-height:1.15}
+.sticker span{font-weight:600}
+.sticker a{display:inline-block;margin-top:10px;font-weight:800}
+
+/* sections */
+section{padding:56px 0}
+h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weight:600}
+.lead{color:var(--muted);max-width:52ch;margin:0 0 28px}
+.category{padding:34px 0;border-top:1px solid var(--line)}
+.category:first-of-type{border-top:0}
+.category h3{font-size:1.6rem;margin:0 0 4px;font-weight:600}
+.category p{margin:0 0 18px;color:var(--muted);max-width:56ch}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ph{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;color:var(--muted);font-size:.9rem;padding:12px}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ph:nth-child(1){border-radius:26px 26px 90px 26px}
+.ph:nth-child(2){border-radius:90px 26px 26px 26px}
+.ph:nth-child(3){border-radius:26px 90px 26px 26px}
+
+/* markets */
+#markets{background:var(--accent-soft)}
+.market{display:grid;grid-template-columns:130px 1fr;gap:20px;padding:18px 0;border-top:2px dashed rgba(42,36,32,.18)}
+.market:first-child{border-top:0}
+.market .date{font-weight:600;font-size:1.2rem;line-height:1.3}
+.market .date small{display:block;font-weight:600;color:var(--muted);font-size:.95rem}
+.market h3{margin:0;font-size:1.3rem;font-weight:600}
+.market p{margin:2px 0 0}
+.market .note{color:var(--muted)}
+.empty{font-weight:600}
+
+/* contact */
+form{display:grid;gap:16px;max-width:560px}
+label{display:grid;gap:6px;font-weight:600}
+input,textarea{font:inherit;color:inherit;background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;width:100%}
+input:focus,textarea:focus{border-color:var(--accent);outline:none}
+textarea{min-height:140px;resize:vertical}
+.trap{position:absolute;left:-9999px}
+.direct{margin-top:20px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+
+@media (max-width:760px){
+  .hero .wrap{grid-template-columns:1fr}
+  .hero{padding-top:40px}
+  .sticker{order:-1;width:240px;padding:28px 22px;justify-self:start}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .gallery .ph:nth-child(3){display:none}
+  .market{grid-template-columns:1fr;gap:4px}
+  nav a{margin-left:14px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">Ming’s Studio</a>
+    <nav aria-label="Main">
+      <a href="#work">Work</a>
+      <a href="#markets">Markets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <h1>Clay, thread and a bit of play.</h1>
+      <svg class="squiggle" viewBox="0 0 150 14" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" aria-hidden="true"><path d="M3 8 C 15 0, 27 14, 39 7 S 63 0, 75 7 S 99 14, 111 7 S 135 0, 147 7"/></svg>
+      <p>Handmade ceramics, sewn goods and other small crafts from our studio. Replace this with one or two friendly sentences about you.</p>
+      <a class="btn" href="#work">See the work</a>
+    </div>
+    <!-- Filled in automatically from the MARKETS list further down -->
+    <div class="sticker" id="sticker" aria-live="polite">
+      <small>Next market</small>
+      <strong>Dates coming soon</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ============ WORK ============ -->
+<section id="work">
+  <div class="wrap">
+    <h2>The work</h2>
+    <p class="lead">Everything is made in small batches, so each piece is a little different. Come see it in person at a market.</p>
+
+    <div class="category">
+      <h3>Ceramics</h3>
+      <p>Mugs, bowls and plates, thrown or hand built. Replace with a line about your glazes.</p>
+      <div class="gallery">
+        <figure class="ph"><img src="images/ceramics-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: ceramics-1.jpg</figure>
+        <figure class="ph"><img src="images/ceramics-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: ceramics-2.jpg</figure>
+        <figure class="ph"><img src="images/ceramics-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: ceramics-3.jpg</figure>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Sewing</h3>
+      <p>Bags, pouches and textile goods. Replace with a line about your fabrics.</p>
+      <div class="gallery">
+        <figure class="ph"><img src="images/sewing-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: sewing-1.jpg</figure>
+        <figure class="ph"><img src="images/sewing-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: sewing-2.jpg</figure>
+        <figure class="ph"><img src="images/sewing-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: sewing-3.jpg</figure>
+      </div>
+    </div>
+
+    <div class="category">
+      <h3>Other crafts</h3>
+      <p>The rest of the workshop: small things that did not fit anywhere else.</p>
+      <div class="gallery">
+        <figure class="ph"><img src="images/crafts-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: crafts-1.jpg</figure>
+        <figure class="ph"><img src="images/crafts-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: crafts-2.jpg</figure>
+        <figure class="ph"><img src="images/crafts-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: crafts-3.jpg</figure>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ MARKETS ============ -->
+<section id="markets">
+  <div class="wrap">
+    <h2>Find us at a market</h2>
+    <p class="lead">We set up a table at markets throughout the season. Come say hi and pick up something in person.</p>
+    <div id="market-list"><p class="empty">No dates posted yet. Check back soon.</p></div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="wrap">
+    <h2>Say hello</h2>
+    <p class="lead">Questions, custom orders or market suggestions? Send a note and we will get back to you.</p>
+
+    <!-- CONTACT FORM PLACEHOLDER
+         1. Sign up free at formspree.io (or web3forms.com)
+         2. Create a form that sends to your email
+         3. Replace the address in action="" below with the one they give you -->
+    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <label>Your name
+        <input type="text" name="name" autocomplete="name" required>
+      </label>
+      <label>Your email
+        <input type="email" name="email" autocomplete="email" required>
+      </label>
+      <label>Your message
+        <textarea name="message" required></textarea>
+      </label>
+      <input class="trap" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div><button class="btn" type="submit">Send message</button></div>
+    </form>
+    <p class="direct">Prefer email? <a href="mailto:hello@mingsstudio.ca">hello@mingsstudio.ca</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>&copy; <span id="year">2026</span> Ming’s Studio</span>
+    <span>Instagram: <a href="https://instagram.com/YOURHANDLE">@yourhandle</a></span>
+    <span>Find us at markets together with <a href="https://kodamawood.ca">Kodama Wood</a></span>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   UPCOMING MARKETS: this is the only list you edit each time.
+   Copy a line, change the details, save. Rules:
+   - date must be written YEAR-MONTH-DAY, like 2026-11-07
+   - leave link as "" if you have no link
+   - leave note as "" if you have nothing to add
+   - markets that have already happened hide themselves
+   ============================================================ */
+const MARKETS = [
+  { date: "2026-11-07", time: "10am to 4pm", name: "Market name", place: "Venue, Town", link: "https://example.com", note: "Both of us will be there." },
+  { date: "2026-11-21", time: "9am to 3pm",  name: "Another market name", place: "Venue, Town", link: "", note: "Bring cash or card, we take both." },
+  { date: "2026-12-05", time: "10am to 5pm", name: "Holiday market", place: "Venue, Town", link: "", note: "" }
+];
+
+/* ---- below here is the machinery; no need to touch ---- */
+(function () {
+  var now = new Date();
+  var upcoming = MARKETS
+    .map(function (m) { m.when = new Date(m.date + "T23:59:59"); return m; })
+    .filter(function (m) { return m.when >= now; })
+    .sort(function (a, b) { return a.when - b.when; });
+
+  function fmt(d, opts) { return d.toLocaleDateString("en-CA", opts); }
+  function esc(s) { var t = document.createElement("div"); t.textContent = s; return t.innerHTML; }
+
+  var sticker = document.getElementById("sticker");
+  var list = document.getElementById("market-list");
+
+  if (upcoming.length) {
+    var n = upcoming[0];
+    sticker.innerHTML = "<small>Next market</small><strong>" +
+      fmt(n.when, { weekday: "long", month: "long", day: "numeric" }) +
+      "</strong><span>" + esc(n.place) + "</span><br><a href=\"#markets\">All dates</a>";
+
+    list.innerHTML = upcoming.map(function (m) {
+      var title = m.link
+        ? "<a href=\"" + esc(m.link) + "\" target=\"_blank\" rel=\"noopener\">" + esc(m.name) + "</a>"
+        : esc(m.name);
+      return "<div class=\"market\"><div class=\"date\">" +
+        fmt(m.when, { weekday: "short", month: "short", day: "numeric" }) +
+        "<small>" + esc(m.time) + "</small></div><div><h3>" + title + "</h3><p>" + esc(m.place) + "</p>" +
+        (m.note ? "<p class=\"note\">" + esc(m.note) + "</p>" : "") + "</div></div>";
+    }).join("");
+  }
+  document.getElementById("year").textContent = now.getFullYear();
+})();
+</script>
+</body>
+</html>
