@@ -3,11 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- "Do not use" signals: ask AI tools not to train on this site or its images (a request, honoured by reputable companies) -->
+<meta name="robots" content="noai, noimageai">
+<meta name="tdm-reservation" content="1">
 <title>Ming’s Studio | Ceramics and sewing</title>
 <meta name="description" content="Handmade ceramics, sewn goods and crafts. Find us at markets.">
+<!-- FAVICON (the small icon in the browser tab): the round logo. To change it, replace images/logo-round.png
+     with another square PNG (a round one with a transparent background looks best). -->
+<link rel="icon" type="image/png" href="images/logo-round.png">
+<link rel="apple-touch-icon" href="images/logo-round.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Google+Sans:wght@500&family=Lexend+Deca:wght@300;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    STYLE SETTINGS: change these and the whole site follows.
@@ -20,25 +27,35 @@
   --ink: #2A2420;
   --muted: #6B6159;
   --line: #EDE6DA;
-  --font: "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;           /* body text */
-  --font-head: "Fredoka", "Nunito", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* headings, logo, buttons */
+  --font: "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;      /* body text (Light 300) */
+  --font-head: "Fredoka", "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* headings and buttons (titles use Medium 500) */
+  --font-logo: "Google Sans", "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* the name in the header */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:1.0625rem;line-height:1.65}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:300;font-size:1.0625rem;line-height:1.65}
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
 .wrap{max-width:1040px;margin:0 auto;padding:0 22px}
 
-h1,h2,h3,.logo,.btn,.sticker strong,.market .date{font-family:var(--font-head)}
+h1,h2,h3,.btn,.sticker strong,.market .date{font-family:var(--font-head)}
 
 /* header */
 header{position:sticky;top:0;z-index:10;background:rgba(255,254,251,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:600;font-size:1.2rem;text-decoration:none;letter-spacing:.01em}
-nav a{margin-left:22px;text-decoration:none;font-weight:600;padding:6px 0;border-bottom:3px solid transparent}
+.logo{display:inline-flex;align-items:center;gap:10px;font-family:var(--font-logo);font-weight:500;font-size:1.2rem;text-decoration:none;letter-spacing:.01em;white-space:nowrap}
+.logo-mark{width:34px;height:34px;border-radius:50%;background:var(--accent);flex:none;object-fit:cover}
+@media (max-width:420px){
+  header .wrap{padding:0 16px}
+  .logo{gap:8px;font-size:1.08rem}
+  .logo-mark{width:28px;height:28px}
+  header nav{white-space:nowrap}
+  header nav a{margin-left:12px;font-size:.94rem}
+}
+@media (max-width:370px){header .wrap{padding:0 14px}header nav a{margin-left:9px;font-size:.86rem}.logo{font-size:.98rem;gap:6px}.logo-mark{width:26px;height:26px}}
+nav a{margin-left:22px;text-decoration:none;font-family:var(--font-head);font-weight:500;padding:6px 0;border-bottom:3px solid transparent}
 nav a:hover{border-bottom-color:var(--accent)}
 
 /* hero */
@@ -46,17 +63,16 @@ nav a:hover{border-bottom-color:var(--accent)}
 .hero .wrap{position:relative;z-index:2;min-height:clamp(520px,76vh,700px);display:flex;align-items:center;padding-top:56px;padding-bottom:56px}
 .hero .wrap{pointer-events:none} /* lets clicks reach the photo dots underneath */
 .hero-text{width:50%;pointer-events:auto}
-h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;margin:0 0 18px;font-weight:600;letter-spacing:0}
+h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;margin:0 0 18px;font-weight:500;letter-spacing:0}
 .squiggle{display:block;width:150px;height:14px;margin:0 0 22px;color:var(--accent)}
 .hero p{max-width:32ch;font-size:1.2rem;margin:0 0 26px}
-.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:600;letter-spacing:.01em;font-family:inherit;font-size:1rem;text-decoration:none;border:0;border-radius:999px;padding:13px 28px;cursor:pointer}
+.btn{display:inline-block;background:var(--accent);color:var(--on-accent);font-weight:500;letter-spacing:.01em;font-family:var(--font-head);font-size:1.05rem;text-decoration:none;border:0;border-radius:999px;padding:13px 28px;cursor:pointer}
 .btn:hover{filter:brightness(.93)}
 
 /* hero photos: the right half of the hero, with a soft wavy edge */
 .hero-media{position:absolute;z-index:1;top:0;right:0;bottom:0;width:54%;background:var(--accent-soft);
   -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-opacity='0'/%3E%3Cstop offset='.13' stop-opacity='1'/%3E%3C/linearGradient%3E%3Cpath fill='url(%23g)' d='M9 0C3 12 12 22 6 35S11 58 5 70 10 90 7 100H100V0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;
           mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3ClinearGradient id='g'%3E%3Cstop offset='0' stop-opacity='0'/%3E%3Cstop offset='.13' stop-opacity='1'/%3E%3C/linearGradient%3E%3Cpath fill='url(%23g)' d='M9 0C3 12 12 22 6 35S11 58 5 70 10 90 7 100H100V0Z'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
-.hero-hint{position:absolute;inset:0;margin:0;display:grid;place-items:center;padding:24px 24px 24px 18%;text-align:center;font-weight:600;font-size:.95rem;color:var(--muted)}
 .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.4s ease}
 .slide.is-on{opacity:1}
 .slide-controls{position:absolute;z-index:3;bottom:22px;right:calc(27% - 60px);display:flex;align-items:center;gap:2px;padding:4px 8px;border-radius:999px;background:rgba(42,36,32,.42);backdrop-filter:blur(6px)}
@@ -95,11 +111,11 @@ h1{font-size:clamp(2.6rem,6vw,4.6rem);line-height:1.02;margin:0 0 18px;font-weig
 
 /* sections */
 section{padding:56px 0}
-h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weight:600}
+h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weight:500}
 .lead{color:var(--muted);max-width:52ch;margin:0 0 28px}
 .category{padding:34px 0;border-top:1px solid var(--line)}
 .category:first-of-type{border-top:0}
-.category h3{font-size:1.6rem;margin:0 0 4px;font-weight:600}
+.category h3{font-size:1.6rem;margin:0 0 4px;font-weight:500}
 .category p{margin:0 0 18px;color:var(--muted);max-width:56ch}
 /* photo galleries: a row you can swipe or move with the arrows */
 .carousel{position:relative}
@@ -109,9 +125,10 @@ h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weigh
 .gallery:focus-visible{outline-offset:4px}
 .ph{margin:0;position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--accent-soft);display:flex;align-items:center;justify-content:center;text-align:center;font-weight:600;color:var(--muted);font-size:.9rem;padding:12px;scroll-snap-align:start}
 .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.ph:nth-child(3n+1){border-radius:26px 26px 90px 26px}
-.ph:nth-child(3n+2){border-radius:90px 26px 26px 26px}
-.ph:nth-child(3n){border-radius:26px 90px 26px 26px}
+/* photo protection: photos cannot be dragged out, long-pressed to save, or right-clicked to save */
+.ph img,.slide,.logo-mark{pointer-events:none;-webkit-user-select:none;user-select:none;-webkit-user-drag:none;-webkit-touch-callout:none}
+.ph,.hero-media{-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+.ph{border-radius:20px}
 .g-arrow{position:absolute;z-index:2;top:50%;width:48px;height:48px;margin-top:-24px;border:0;border-radius:999px;background:var(--bg);color:var(--ink);
   box-shadow:0 4px 16px rgba(42,36,32,.22);display:grid;place-items:center;cursor:pointer;transition:opacity .25s,transform .2s}
 .g-arrow svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
@@ -119,7 +136,7 @@ h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weigh
 .g-arrow.prev{left:-18px}
 .g-arrow.next{right:-18px}
 .g-arrow[disabled]{opacity:0;pointer-events:none}
-.g-count{margin:12px 0 0;font-size:.9rem;font-weight:600;color:var(--muted)}
+.g-count{margin:12px 0 0;font-family:var(--font-head);font-size:.95rem;font-weight:500;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.gallery{scroll-behavior:auto}.g-arrow{transition:none}}
 @media (max-width:900px){.gallery{grid-auto-columns:calc((100% - 16px) / 2.3)}}
 @media (max-width:600px){
@@ -135,21 +152,31 @@ h2{font-size:clamp(1.8rem,4vw,2.4rem);line-height:1.15;margin:0 0 8px;font-weigh
 .market:first-child{border-top:0}
 .market .date{font-weight:600;font-size:1.2rem;line-height:1.3}
 .market .date small{display:block;font-weight:600;color:var(--muted);font-size:.95rem}
-.market h3{margin:0;font-size:1.3rem;font-weight:600}
+.market h3{margin:0;font-family:var(--font);font-size:1.25rem;font-weight:500}
 .market p{margin:2px 0 0}
 .market .note{color:var(--muted)}
+.market .dir{display:inline-flex;align-items:center;gap:6px;min-height:44px;margin-top:12px;padding:8px 18px;border:2px solid var(--ink);border-radius:999px;
+  font-family:var(--font-head);font-weight:600;font-size:.95rem;text-decoration:none;background:transparent;transition:background .2s}
+.market .dir:hover{background:var(--bg)}
+.market .dir svg{width:16px;height:16px;fill:currentColor;flex:none}
 .empty{font-weight:600}
 
 /* contact */
 form{display:grid;gap:16px;max-width:560px}
 label{display:grid;gap:6px;font-weight:600}
-input,textarea{font:inherit;color:inherit;background:#fff;border:2px solid var(--line);border-radius:14px;padding:12px 14px;width:100%}
+input,textarea{font:inherit;color:inherit;background:#fff;border:2px solid var(--line);border-radius:20px;padding:12px 14px;width:100%}
 input:focus,textarea:focus{border-color:var(--accent);outline:none}
 textarea{min-height:140px;resize:vertical}
 .trap{position:absolute;left:-9999px}
+.btn[disabled]{opacity:.6;cursor:wait}
+.form-status{margin:0;font-weight:600;padding:12px 16px;border-radius:14px}
+.form-status:empty{display:none}
+.form-status.ok{background:var(--accent-soft)}
+.form-status.err{background:#FBE3DC;color:#8A2E14}
 
-footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--muted);font-size:.95rem}
-footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between}
+footer{padding:34px 0;color:var(--muted);font-size:.95rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-between;align-items:center}
+@media (max-width:600px){footer .wrap{flex-direction:column;align-items:center;text-align:center;gap:10px}}
 
 @media (max-width:760px){
   .market{grid-template-columns:1fr;gap:4px}
@@ -161,7 +188,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 
 <header>
   <div class="wrap">
-    <a class="logo" href="#top">Ming’s Studio</a>
+    <!-- LOGO: images/logo-round.png, also used as the browser-tab icon -->
+    <a class="logo" href="#top">
+      <img class="logo-mark" src="images/logo-round.png" alt="" width="34" height="34">
+      ming’s studio
+    </a>
     <nav aria-label="Main">
       <a href="#work">Work</a>
       <a href="#markets">Markets</a>
@@ -175,14 +206,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 <!-- ============ HERO ============ -->
 <div class="hero">
 
-  <!-- HERO PHOTOS: 3 to 5 is best. To add one, copy an <img> line and change the file name and alt text.
-       Landscape photos about 1600 x 1200 px work best. They change by themselves every few seconds. -->
+  <!-- HERO PHOTOS: one photo stays still; with 2 or more they change by themselves every few seconds.
+       To add one, copy the <img> line, change the file name and alt text, and use class="slide" (only the first has "is-on").
+       Photos get cropped to fit. To choose which part stays visible, change object-position:
+       "50% 50%" is the centre, a bigger second number shows more of the bottom. -->
   <div class="hero-media" id="hero-media" aria-roledescription="carousel" aria-label="Photos of our work">
-    <p class="hero-hint" aria-hidden="true">Photos here: hero-1.jpg to hero-4.jpg</p>
-    <img class="slide is-on" src="images/hero-1.jpg" alt="Describe hero photo 1" fetchpriority="high">
-    <img class="slide" src="images/hero-2.jpg" alt="Describe hero photo 2" loading="lazy">
-    <img class="slide" src="images/hero-3.jpg" alt="Describe hero photo 3" loading="lazy">
-    <img class="slide" src="images/hero-4.jpg" alt="Describe hero photo 4" loading="lazy">
+    <img class="slide is-on" src="images/hero-1.jpeg" alt="A wooden crate full of colourful handmade sock animals with button eyes" fetchpriority="high" style="object-position:50% 60%">
     <div class="slide-controls" id="slide-controls"></div>
   </div>
 
@@ -205,48 +234,44 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 <!-- ============ WORK ============ -->
 <section id="work">
   <div class="wrap">
-    <h2>The work</h2>
+    <h2>Work</h2>
     <p class="lead">Everything is made in small batches, so each piece is a little different. Come see it in person at a market.</p>
 
     <div class="category">
+      <h3>Sock animals</h3>
+      <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
+           To remove one, delete its line. The arrows and photo count update by themselves. -->
+      <div class="gallery">
+        <figure class="ph"><img src="images/socks-1.jpeg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: socks-1.jpeg</figure>
+        <figure class="ph"><img src="images/socks-2.jpeg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: socks-2.jpeg</figure>
+        <figure class="ph"><img src="images/socks-3.jpeg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: socks-3.jpeg</figure>
+        <figure class="ph"><img src="images/socks-4.jpeg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: socks-4.jpeg</figure>
+        <figure class="ph"><img src="images/socks-5.jpeg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: socks-5.jpeg</figure>
+      </div>
+    </div>
+
+    <div class="category">
       <h3>Ceramics</h3>
-      <p>Mugs, bowls and plates, thrown or hand built. Replace with a line about your glazes.</p>
       <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
            To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
-        <figure class="ph"><img src="images/ceramics-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: ceramics-1.jpg</figure>
-        <figure class="ph"><img src="images/ceramics-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: ceramics-2.jpg</figure>
-        <figure class="ph"><img src="images/ceramics-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: ceramics-3.jpg</figure>
-        <figure class="ph"><img src="images/ceramics-4.jpg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: ceramics-4.jpg</figure>
-        <figure class="ph"><img src="images/ceramics-5.jpg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: ceramics-5.jpg</figure>
+        <figure class="ph"><img src="images/ceramics-1.jpeg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: ceramics-1.jpeg</figure>
+        <figure class="ph"><img src="images/ceramics-2.jpeg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: ceramics-2.jpeg</figure>
+        <figure class="ph"><img src="images/ceramics-3.jpeg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: ceramics-3.jpeg</figure>
+        <figure class="ph"><img src="images/ceramics-4.jpeg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: ceramics-4.jpeg</figure>
+        <figure class="ph"><img src="images/ceramics-5.jpeg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: ceramics-5.jpeg</figure>
       </div>
     </div>
 
     <div class="category">
-      <h3>Sewing</h3>
-      <p>Bags, pouches and textile goods. Replace with a line about your fabrics.</p>
+      <h3>Gifts &amp; jewelry</h3>
       <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
            To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
-        <figure class="ph"><img src="images/sewing-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: sewing-1.jpg</figure>
-        <figure class="ph"><img src="images/sewing-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: sewing-2.jpg</figure>
-        <figure class="ph"><img src="images/sewing-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: sewing-3.jpg</figure>
-        <figure class="ph"><img src="images/sewing-4.jpg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: sewing-4.jpg</figure>
-        <figure class="ph"><img src="images/sewing-5.jpg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: sewing-5.jpg</figure>
-      </div>
-    </div>
-
-    <div class="category">
-      <h3>Other crafts</h3>
-      <p>The rest of the workshop: small things that did not fit anywhere else.</p>
-      <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
-           To remove one, delete its line. The arrows and photo count update by themselves. -->
-      <div class="gallery">
-        <figure class="ph"><img src="images/crafts-1.jpg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: crafts-1.jpg</figure>
-        <figure class="ph"><img src="images/crafts-2.jpg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: crafts-2.jpg</figure>
-        <figure class="ph"><img src="images/crafts-3.jpg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: crafts-3.jpg</figure>
-        <figure class="ph"><img src="images/crafts-4.jpg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: crafts-4.jpg</figure>
-        <figure class="ph"><img src="images/crafts-5.jpg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: crafts-5.jpg</figure>
+        <figure class="ph"><img src="images/gifts-1.jpeg" alt="Wooden star stud earrings on a handmade card, with two pairs of wooden bar drop earrings" loading="lazy" onerror="this.remove()">Photo here: gifts-1.jpeg</figure>
+        <figure class="ph"><img src="images/gifts-2.jpeg" alt="Five hand-painted cat face pendants on black cord necklaces" loading="lazy" onerror="this.remove()">Photo here: gifts-2.jpeg</figure>
+        <figure class="ph"><img src="images/gifts-3.jpeg" alt="Three wooden bookmarks, two painted with dots and flowers, with small tassel charms" loading="lazy" onerror="this.remove()">Photo here: gifts-3.jpeg</figure>
+        <figure class="ph"><img src="images/gifts-4.jpeg" alt="Keychains made of small carved wooden pieces and colourful beads on clip hooks" loading="lazy" onerror="this.remove()">Photo here: gifts-4.jpeg</figure>
       </div>
     </div>
 
@@ -266,13 +291,14 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 <section id="contact">
   <div class="wrap">
     <h2>Say hello</h2>
-    <p class="lead">Questions, custom orders or market suggestions? Send a note and we will get back to you.</p>
+    <p class="lead">Questions or market suggestions? Send us a note! :)</p>
 
-    <!-- CONTACT FORM PLACEHOLDER
-         1. Sign up free at formspree.io (or web3forms.com)
-         2. Create a form that sends to your email
-         3. Replace the address in action="" below with the one they give you -->
-    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <!-- CONTACT FORM: messages are emailed by web3forms.com to the address linked to the access_key below.
+         To send them to a different email, create a new key at web3forms.com and paste it in place of this one. -->
+    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="8556cb20-409a-4f0d-9f19-e1d0b7a6ea53">
+      <input type="hidden" name="subject" value="New message from the Ming’s Studio website">
+      <input type="hidden" name="from_name" value="Ming’s Studio website">
       <label>Your name
         <input type="text" name="name" autocomplete="name" required>
       </label>
@@ -282,8 +308,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
       <label>Your message
         <textarea name="message" required></textarea>
       </label>
-      <input class="trap" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <input class="trap" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div><button class="btn" type="submit">Send message</button></div>
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
     </form>
   </div>
 </section>
@@ -292,9 +319,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
 
 <footer>
   <div class="wrap">
-    <span>&copy; <span id="year">2026</span> Ming’s Studio</span>
-    <span>Instagram: <a href="https://instagram.com/YOURHANDLE">@yourhandle</a></span>
-    <span>Find us at markets together with <a href="https://kodamawood.ca">Kodama Wood</a></span>
+    <span><a href="https://www.instagram.com/mings_studio/" target="_blank" rel="noopener">Follow me on Instagram</a></span>
+    <span>Find us at markets together with <a href="https://kodamawood.ca">kodama</a></span>
+    <span>&copy; <span id="year">2026</span> ming’s studio</span>
   </div>
 </footer>
 
@@ -305,13 +332,15 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
    - date: the first day, written YEAR-MONTH-DAY, like 2026-11-15
    - end:  the last day if the market runs over several days,
            or "" if it is a one-day market
-   - leave time, place, link or note as "" if you have nothing for them
+   - map:  a Google Maps link for the "Directions" button
+           (in Google Maps: find the place, click Share, Copy link)
+   - leave time, place, link, map or note as "" if you have nothing for them
    - the top market also shows in the "Next market" bubble
    - markets hide themselves once they are over
    ============================================================ */
 const MARKETS = [
-  { date: "2026-11-14", end: "2026-11-15", time: "10:30am to 5pm", name: "Artisans Westmount", place: "Victoria Hall", link: "", note: "$2 admission, or bring a non-perishable food item." },
-  { date: "2026-11-21", end: "2026-11-22", time: "", name: "Artisan market in Dorval", place: "", link: "", note: "Details to come." }
+  { date: "2026-11-14", end: "2026-11-15", time: "10:30am to 5pm", name: "Artisans Westmount", place: "Victoria Hall", link: "", map: "https://www.google.com/maps/place/Victoria+Hall/data=!4m2!3m1!1s0x0:0x79fc745852457b8d?sa=X&ved=1t:2428&ictx=111", note: "$2 admission, or bring a non-perishable food item." },
+  { date: "2026-11-21", end: "2026-11-22", time: "", name: "Artisan market in Dorval", place: "", link: "", map: "", note: "Details to come." }
 ];
 
 /* ---- below here is the machinery; no need to touch ---- */
@@ -320,6 +349,7 @@ const MARKETS = [
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   function day(s) { return new Date(s + "T12:00:00"); }
+  var PIN = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>';
 
   var upcoming = MARKETS
     .map(function (m) { m.from = day(m.date); m.to = m.end ? day(m.end) : m.from; return m; })
@@ -357,7 +387,9 @@ const MARKETS = [
       return "<div class=\"market\"><div class=\"date\">" + dates(m) + "<small>" + days(m) + "</small>" +
         (m.time ? "<small>" + esc(m.time) + "</small>" : "") + "</div><div><h3>" + title + "</h3>" +
         (m.place ? "<p>" + esc(m.place) + "</p>" : "") +
-        (m.note ? "<p class=\"note\">" + esc(m.note) + "</p>" : "") + "</div></div>";
+        (m.note ? "<p class=\"note\">" + esc(m.note) + "</p>" : "") +
+        (m.map ? "<a class=\"dir\" href=\"" + esc(m.map) + "\" target=\"_blank\" rel=\"noopener\" aria-label=\"Directions to " + esc(m.name) + " (opens Google Maps)\">" + PIN + "Directions</a>" : "") +
+        "</div></div>";
     }).join("");
   }
   document.getElementById("year").textContent = now.getFullYear();
@@ -409,6 +441,13 @@ const MARKETS = [
   build();
 })();
 
+/* ---- photo protection: no right-click menu or dragging on photos (machinery; no need to touch) ---- */
+(function () {
+  var PHOTOS = ".ph, .hero-media, .logo";
+  document.addEventListener("contextmenu", function (e) { if (e.target.closest && e.target.closest(PHOTOS)) e.preventDefault(); });
+  document.addEventListener("dragstart", function (e) { if (e.target.closest && e.target.closest(PHOTOS)) e.preventDefault(); });
+})();
+
 /* ---- photo gallery arrows (machinery; no need to touch) ---- */
 (function () {
   var L = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
@@ -445,6 +484,33 @@ const MARKETS = [
     g.addEventListener("scroll", function () { window.requestAnimationFrame(update); }, { passive: true });
     window.addEventListener("resize", update);
     update();
+  });
+})();
+
+/* ---- contact form: sends without leaving the page (machinery; no need to touch) ---- */
+(function () {
+  var form = document.getElementById("contact-form");
+  if (!form || !window.fetch) return; /* very old browsers just use the normal form */
+  var out = document.getElementById("form-status");
+  var btn = form.querySelector("button[type=submit]");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    btn.disabled = true;
+    out.className = "form-status";
+    out.textContent = "Sending…";
+    fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (!d.success) throw new Error(d.message);
+        form.reset();
+        out.className = "form-status ok";
+        out.textContent = "Thank you! Your message is on its way. We will get back to you soon.";
+      })
+      .catch(function () {
+        out.className = "form-status err";
+        out.textContent = "Sorry, the message could not be sent. Please try again in a moment.";
+      })
+      .then(function () { btn.disabled = false; });
   });
 })();
 </script>

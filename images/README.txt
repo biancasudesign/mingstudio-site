@@ -1,11 +1,13 @@
-Put your photos in this folder using these exact file names (JPG, under 500 KB each).
+Put your photos in this folder using these exact file names (JPEG, under 500 KB each).
 Until a photo is added, the page shows a tinted box with the file name it expects.
 
-HERO SLIDESHOW (top of the page), landscape, about 1600 x 1200 px:
-hero-1.jpg to hero-4.jpg
+LOGO: logo.jpeg is your original. logo-round.png is the round cut-out used in the
+header and as the browser-tab icon.
 
-CATEGORY PHOTOS, portrait (4:5), about 1200 x 1500 px. 5 to 10 per category:
-ceramics-1.jpg to ceramics-5.jpg
-sewing-1.jpg   to sewing-5.jpg
-crafts-1.jpg   to crafts-5.jpg
+HERO (top of the page): hero-1.jpeg
+
+CATEGORY PHOTOS, portrait (4:5) or square work best:
+Sock animals:     socks-1.jpeg    to socks-5.jpeg
+Ceramics:         ceramics-1.jpeg to ceramics-5.jpeg
+Gifts & jewelry:  gifts-1.jpeg    to gifts-4.jpeg
 If you add or remove photos, also add or remove the matching <figure> line in index.html.

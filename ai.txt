@@ -1,0 +1,6 @@
+# ai.txt: the artist does not allow any content on this site, including
+# images and text, to be used for AI training or datasets.
+# (Format from spawning.ai, used by some dataset tools.)
+
+User-Agent: *
+Disallow: /
