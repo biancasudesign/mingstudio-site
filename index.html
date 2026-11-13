@@ -339,13 +339,16 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
            or "" if it is a one-day market
    - map:  a Google Maps link for the "Directions" button
            (in Google Maps: find the place, click Share, Copy link)
+   - time: if the hours change each day, separate the days with | like
+           "Fri 5–9pm | Sat 10am–5pm" (each day shows on its own line)
    - leave time, place, link, map or note as "" if you have nothing for them
    - the top market also shows in the "Next market" bubble
    - markets hide themselves once they are over
    ============================================================ */
 const MARKETS = [
   { date: "2026-11-14", end: "2026-11-15", time: "10:30am to 5pm", name: "Artisans Westmount", place: "Victoria Hall", link: "", map: "https://www.google.com/maps/place/Victoria+Hall/data=!4m2!3m1!1s0x0:0x79fc745852457b8d?sa=X&ved=1t:2428&ictx=111", note: "$2 admission, or bring a non-perishable food item." },
-  { date: "2026-11-21", end: "2026-11-22", time: "", name: "Artisan market in Dorval", place: "", link: "", map: "", note: "Details to come." }
+  { date: "2026-11-20", end: "2026-11-22", time: "Fri 5–9pm | Sat 10am–5pm | Sun 1–4pm", name: "Salon des artisans 2026", place: "Centre Communautaire Sarto-Desnoyers", link: "", map: "https://www.google.com/maps/place/Sarto-Desnoyers+Community+Centre/@45.4398487,-73.7568795,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc93df6ea4a0c37:0x38091ff841e116ae!8m2!3d45.4398487!4d-73.7542992!16s%2Fg%2F1hc1n76lt?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D", note: "" },
+  { date: "2026-11-28", end: "2026-11-29", time: "Sat 10am–5pm | Sun 1–5pm", name: "Dorval Potters’ Holiday Sale", place: "Centre Communautaire Sarto-Desnoyers", link: "", map: "https://www.google.com/maps/place/Sarto-Desnoyers+Community+Centre/@45.4398487,-73.7568795,17z/data=!3m1!4b1!4m6!3m5!1s0x4cc93df6ea4a0c37:0x38091ff841e116ae!8m2!3d45.4398487!4d-73.7542992!16s%2Fg%2F1hc1n76lt?entry=ttu&g_ep=EgoyMDI2MTExMC4wIKXMDSoASAFQAw%3D%3D", note: "" }
 ];
 
 /* ---- below here is the machinery; no need to touch ---- */
@@ -390,7 +393,7 @@ const MARKETS = [
         ? "<a href=\"" + esc(m.link) + "\" target=\"_blank\" rel=\"noopener\">" + esc(m.name) + "</a>"
         : esc(m.name);
       return "<div class=\"market\"><div class=\"date\">" + dates(m) + "<small>" + days(m) + "</small>" +
-        (m.time ? "<small>" + esc(m.time) + "</small>" : "") + "</div><div><h3>" + title + "</h3>" +
+        (m.time ? m.time.split("|").map(function (t) { return "<small>" + esc(t.trim()) + "</small>"; }).join("") : "") + "</div><div><h3>" + title + "</h3>" +
         (m.place ? "<p>" + esc(m.place) + "</p>" : "") +
         (m.note ? "<p class=\"note\">" + esc(m.note) + "</p>" : "") +
         (m.map ? "<a class=\"dir\" href=\"" + esc(m.map) + "\" target=\"_blank\" rel=\"noopener\" aria-label=\"Directions to " + esc(m.name) + " (opens Google Maps)\">" + PIN + "Directions</a>" : "") +
