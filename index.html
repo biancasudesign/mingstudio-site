@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="images/logo-round.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Google+Sans:wght@500&family=Lexend+Deca:wght@300;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Google+Sans:wght@500&family=Lexend+Deca:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    STYLE SETTINGS: change these and the whole site follows.
@@ -27,14 +27,14 @@
   --ink: #2A2420;
   --muted: #6B6159;
   --line: #EDE6DA;
-  --font: "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;      /* body text (Light 300) */
+  --font: "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;      /* body text (Regular 400) */
   --font-head: "Fredoka", "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* headings and buttons (titles use Medium 500) */
   --font-logo: "Google Sans", "Lexend Deca", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; /* the name in the header */
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:300;font-size:1.0625rem;line-height:1.65}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-weight:400;font-size:1.0625rem;line-height:1.65}
 img{max-width:100%;display:block}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
@@ -211,7 +211,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
        Photos get cropped to fit. To choose which part stays visible, change object-position:
        "50% 50%" is the centre, a bigger second number shows more of the bottom. -->
   <div class="hero-media" id="hero-media" aria-roledescription="carousel" aria-label="Photos of our work">
-    <img class="slide is-on" src="images/hero-1.jpeg" alt="A wooden crate full of colourful handmade sock animals with button eyes" fetchpriority="high" style="object-position:50% 60%">
+    <img class="slide is-on" src="images/hero-1.jpeg" alt="Three sock animals with felt ears and button noses perched on a wooden stump" fetchpriority="high" style="object-position:50% 20%">
+    <img class="slide" src="images/hero-2.jpeg" alt="Handmade ceramic butter dishes with domed lids in rust, white and blue glazes" loading="lazy" style="object-position:50% 50%">
+    <img class="slide" src="images/hero-3.jpeg" alt="A wooden crate full of colourful handmade sock animals" loading="lazy" style="object-position:50% 50%">
     <div class="slide-controls" id="slide-controls"></div>
   </div>
 
@@ -242,11 +244,12 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
       <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
            To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
-        <figure class="ph"><img src="images/socks-1.jpeg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: socks-1.jpeg</figure>
-        <figure class="ph"><img src="images/socks-2.jpeg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: socks-2.jpeg</figure>
-        <figure class="ph"><img src="images/socks-3.jpeg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: socks-3.jpeg</figure>
-        <figure class="ph"><img src="images/socks-4.jpeg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: socks-4.jpeg</figure>
-        <figure class="ph"><img src="images/socks-5.jpeg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: socks-5.jpeg</figure>
+        <figure class="ph"><img src="images/sock-1.jpeg" alt="Two sock monsters in bold black, orange and blue patterns" loading="lazy" onerror="this.remove()">Photo here: sock-1.jpeg</figure>
+        <figure class="ph"><img src="images/sock-2.jpeg" alt="A hand holding a yellow spotted sock creature in front of a crate of sock animals" loading="lazy" onerror="this.remove()">Photo here: sock-2.jpeg</figure>
+        <figure class="ph"><img src="images/sock-3.jpeg" alt="A grey striped sock dog and a pink striped sock creature side by side" loading="lazy" onerror="this.remove()">Photo here: sock-3.jpeg</figure>
+        <figure class="ph"><img src="images/sock-4.jpeg" alt="A pile of colourful sock cats with button eyes" loading="lazy" onerror="this.remove()">Photo here: sock-4.jpeg</figure>
+        <figure class="ph"><img src="images/sock-5.jpeg" alt="Three sock bunnies with striped red, white and blue legs" loading="lazy" onerror="this.remove()">Photo here: sock-5.jpeg</figure>
+        <figure class="ph"><img src="images/sock-6.jpeg" alt="Three sock cats in grey, blue stripes and brown" loading="lazy" onerror="this.remove()">Photo here: sock-6.jpeg</figure>
       </div>
     </div>
 
@@ -255,11 +258,13 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:8px 28px;justify-content:space-betw
       <!-- PHOTOS: 5 to 10 is best. To add one, copy a <figure> line and change the file name and alt text.
            To remove one, delete its line. The arrows and photo count update by themselves. -->
       <div class="gallery">
-        <figure class="ph"><img src="images/ceramics-1.jpeg" alt="Describe photo 1" loading="lazy" onerror="this.remove()">Photo here: ceramics-1.jpeg</figure>
-        <figure class="ph"><img src="images/ceramics-2.jpeg" alt="Describe photo 2" loading="lazy" onerror="this.remove()">Photo here: ceramics-2.jpeg</figure>
-        <figure class="ph"><img src="images/ceramics-3.jpeg" alt="Describe photo 3" loading="lazy" onerror="this.remove()">Photo here: ceramics-3.jpeg</figure>
-        <figure class="ph"><img src="images/ceramics-4.jpeg" alt="Describe photo 4" loading="lazy" onerror="this.remove()">Photo here: ceramics-4.jpeg</figure>
-        <figure class="ph"><img src="images/ceramics-5.jpeg" alt="Describe photo 5" loading="lazy" onerror="this.remove()">Photo here: ceramics-5.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-1.jpeg" alt="Handmade ceramic butter dishes with domed lids in rust, white and blue glazes" loading="lazy" onerror="this.remove()">Photo here: ceramic-1.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-2.jpeg" alt="A hand holding a carved mug in green and blue glazes" loading="lazy" onerror="this.remove()">Photo here: ceramic-2.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-3.jpeg" alt="A little ceramic creature wind chime hanging outdoors" loading="lazy" onerror="this.remove()">Photo here: ceramic-3.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-4.jpeg" alt="A display of small ceramic wind chimes with wooden strikers" loading="lazy" onerror="this.remove()">Photo here: ceramic-4.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-5.jpeg" alt="A ceramic bowl glazed half green and half brown" loading="lazy" onerror="this.remove()">Photo here: ceramic-5.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-6.jpeg" alt="Ceramic cutlery rests in green and brown glazes, with a spoon, knife and fork" loading="lazy" onerror="this.remove()">Photo here: ceramic-6.jpeg</figure>
+        <figure class="ph"><img src="images/ceramic-7.jpeg" alt="A green and brown glazed ceramic piece on a glass jar, beside a small brown bottle" loading="lazy" onerror="this.remove()">Photo here: ceramic-7.jpeg</figure>
       </div>
     </div>
 
@@ -401,7 +406,7 @@ const MARKETS = [
   var ctrl = document.getElementById("slide-controls");
   var slides = [], i = 0, timer = null, paused = false;
   var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var DELAY = 6000; /* milliseconds each photo stays: 6000 = 6 seconds */
+  var DELAY = 3000; /* milliseconds each photo stays: 3000 = 3 seconds */
 
   function show(n) {
     slides[i].classList.remove("is-on");
